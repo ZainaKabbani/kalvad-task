@@ -1,5 +1,20 @@
 .container {
-    display: grid;
-    grid-template-columns: 1fr  3fr;
-    column-gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 1em;
+
+  .add-list-btn {
+    margin: 10px 0;
+  }
+
+  mat-card {
+    width: 400px;
+    position: relative;
+
+    .delete-btn {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+    }
+  }
 }

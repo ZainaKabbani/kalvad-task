@@ -22,7 +22,13 @@ import { MatIconModule } from '@angular/material/icon';
 export class ListDetailsComponent {
   readonly dialog = inject(MatDialog);
   listDetails = input<BookList>();
-  displayedColumns: string[] = ['book-title', 'year', 'author-name', 'stars', 'actions'];
+  displayedColumns: string[] = [
+    'book-title',
+    'year',
+    'author-name',
+    'stars',
+    'actions',
+  ];
   dataSource = new MatTableDataSource<Book>();
 
   constructor(
@@ -39,10 +45,13 @@ export class ListDetailsComponent {
       data: { listId: this.listDetails()?.id },
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.dataSource.data =
-        this._bookService.getListById(this.listDetails()?.id as string)
-          ?.books || [];
+    dialogRef.componentInstance.bookAdded.subscribe((newBook: Book) => {
+      const existingBooks = this.dataSource.data;
+      const bookExists = existingBooks.some((book) => book.id === newBook.id);
+
+      if (!bookExists) {
+        this.dataSource.data = [...existingBooks, newBook];
+      }
     });
   }
 

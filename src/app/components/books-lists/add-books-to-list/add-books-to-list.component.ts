@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,7 @@ import { Book } from '../../../models/book';
 export class AddBooksToListComponent implements OnInit {
   readonly dialogData: { listId: string } = inject(MAT_DIALOG_DATA);
 
+  bookAdded = output<Book>();
   availableBooks: Book[] = [];
 
   constructor(private _bookService: BookService) {}
@@ -29,5 +30,6 @@ export class AddBooksToListComponent implements OnInit {
 
   public addToList(book: Book): void {
     this._bookService.addBookToList(book, this.dialogData.listId);
+    this.bookAdded.emit(book);
   }
 }

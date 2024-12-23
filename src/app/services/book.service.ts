@@ -121,7 +121,6 @@ export class BookService {
     const lists = this.bookListsSubject.value.map((list) => {
       if (list.id === listId) {
         const sortedBooks = list.books.sort((a, b) => b.stars - a.stars);
-
         return {
           ...list,
           books: sortedBooks,

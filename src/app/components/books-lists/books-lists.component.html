@@ -1,18 +1,16 @@
 <div class="container">
   <div class="col">
-    <button mat-button style="margin: 10px 0" (click)="openDialog()">
+    <button mat-button class="add-list-btn" (click)="openDialog()">
       Add List
     </button>
-    
+
     @for (list of lists; track $index) {
-    <mat-card appearance="outlined" style="width: 400px; position: relative"
-    (click)="showDetails(list.id)"
-    >
+    <mat-card appearance="outlined" (click)="showDetails(list.id)">
       <mat-card-content
         >{{ list.name }}
         <button
           mat-icon-button
-          style="position: absolute; right: 10px; bottom: 5px"
+          class="delete-btn"
           (click)="deleteList(list.id)"
         >
           <mat-icon>delete</mat-icon>
@@ -20,7 +18,6 @@
       </mat-card-content>
     </mat-card>
     }
-    
   </div>
   <div class="col">
     <app-list-details [listDetails]="selectedListDetails"></app-list-details>

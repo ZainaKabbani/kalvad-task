@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Add List</h2>
 <mat-dialog-content>
   @for (book of availableBooks; track $index) {
-  <mat-card appearance="outlined" style="margin-bottom: 5px">
+  <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title> {{ book.title }} by {{ book.author }}</mat-card-title>
       <mat-card-subtitle>{{ book.year }}</mat-card-subtitle>
